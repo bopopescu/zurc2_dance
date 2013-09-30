@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block container %}
+<div class="page-header">
+	<h1>Entrar <small>Informe seu usuário</small></h1>
+</div>
+<form class="form-horizontal" method="post" action="">
+	{% include "form.html" %}
+	<div class="form-actions">
+		<button type="submit" class="btn btn-primary">Entrar</button>
+	</div>
+</form>
+{% endblock %}

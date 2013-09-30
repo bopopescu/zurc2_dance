@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block container %}
+<div class="page-header">
+	<h1>Fale Conosco</h1>
+</div>
+<div class="row">
+	<div class="span6">
+		{% if success %}
+		<div class="alert alert-success">
+			Mensagem enviada com sucesso!
+		</div>
+
+		{% else %}
+		<form action="" method="post" class="well">
+			cccccccccccccccccc
+		</form>
+		{% endif %}
+	</div>
+	<div class="span6">
+		<p>E-mail:
+			<a href="mailto:luizfabiodacruz@gmail.com">luizfabiodacruz@gmail.com</a>
+		</p>
+	</div>
+</div>
+
+
+{% endblock %}

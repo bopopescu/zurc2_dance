@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block container %}
+<div class="page-hero">
+	<h1>Passos
+		<small>
+			{% if search %}
+				Pesquisa com a a palavra: {{ search }}
+			{% else %}
+				Listagem dos passo
+			{% endif %}
+		</small>
+	</h1>
+</div>
+{% for ds in dancesteps %}
+	<div class="page-header">
+		<h3>{{ ds.rhythm }}</h3>
+	</div>
+	<div>
+		<h2><a href="{{ rh.get_absolute_url }}">{{ ds }}</a></h2>
+		<p>
+			{{ rh.description|truncatewords:"20" }}
+		</p>
+	</div>
+{% empty %}
+	<div class="alert alert-info">
+		Nenhum item encontrado com a pesquisa com a palavra <strong>{{ search }}</strong>
+	</div>
+{% endfor %}
+{% endblock %}

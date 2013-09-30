@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load paginator_tags %}
+
+{% block nav_rhythms %} class="active"{% endblock %}
+
+{% block container %}
+<div class="page-header">
+	<h1>
+		Meus Rítmos <small>Listagem dos meus Rítmos</small>
+	</h1>
+</div>
+	<table class="table">
+	<thead>
+		<tr>
+			<th>Nome</th>
+			<th>Público</th>
+			<th>Ações</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for rhythm in page_obj.object_list %}
+		<tr>
+			<td>{{ rhythm.name }}</td>
+			<td>{{ rhythm.public|yesno:"público,privado" }}</td>
+			<td>
+				<a href="{% url rhythm_edit rhythm.pk %}">Editar</a>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+	</table>
+
+{% paginate request paginator page_obj %}
+
+{% endblock %}

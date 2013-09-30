@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block container %}
+	<div class="caption">
+
+	{% for item in items %}
+        Passo sorteado: <h6>{{ item }}</h6>
+
+    {% empty %}
+    	<div class="alert alert-info">
+    		Nenhum passo encontrado!
+    	</div>
+	{% endfor %}
+    
+<!--                     {{ rhythm.description|linebreaks }} -->
+                    <p><a href="#"btn btn-primary">Detalhes</a></p>
+                  </div>
+
+
+{% endblock %}

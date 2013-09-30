@@ -1,0 +1,4 @@
+*.pyc
+zurczdance.db
+zurczdance/settings_local.py
+

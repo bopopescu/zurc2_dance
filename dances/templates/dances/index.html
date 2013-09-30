@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% load paginator_tags %}
+
+{% block nav_rhythms %} class="active"{% endblock %}
+
+{% load thumbnail %}
+
+{% block container %}
+<div class="page-hero">
+	<h1>Rítmos 
+		<small>
+			{% if search %}
+				Pesquisa com a a palavra: {{ search }}
+			{% else %}
+				Listagem dos rítmos
+			{% endif %}
+		</small>
+	</h1>
+</div>
+
+<div class="page-header"></div>
+
+<!-- {% for rh in page_obj.object_list %}
+	<div>
+		<h2><a href="{{ rh.get_absolute_url }}">{{ rh }}</a></h2>
+	</div>
+{% empty %}	
+	<li class="span12">
+		<div class="alert alert-info">
+	        Nenhum ritmo encontrado!
+	    </div>		
+	</li>
+{% endfor %} -->
+
+<ul class="thumbnails">
+{% for rh in page_obj.object_list %}
+	<li class="span4">
+		<div class="thumbnail">
+			{% thumbnail rh.photo "300x200" as im %}
+			<img src="{{ im.url }}" style="margin:{{ im|margin:"300x200" }}">
+            {% empty %}
+                <img src="{{ STATIC_URL }}images/default.jpg">
+            {% endthumbnail %}
+            	<div class="caption">
+            		<h6><a href="{% url rhythms_details rh.pk %}">{{ rh }}</a></h6>
+            		<p><a href="#">Informações</a></p>
+            		<p><a href="{% url dancesteps_sorted rh.pk %}">Sortear passo para treino</a></p>
+            	</div>
+		</div>
+	</li>
+{% empty %}	
+	<li class="span12">
+		<div class="alert alert-info">
+	        Nenhum ritmo encontrado!
+	    </div>		
+	</li>
+{% endfor %}
+</ul>
+
+
+{% paginate request paginator page_obj %}
+
+
+{% endblock %}

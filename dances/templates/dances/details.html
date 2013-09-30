@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block nav_rhythm %} class="active"{% endblock %}
+
+{% block container %}
+
+<div class="page-header">
+	<h1><a href="#">{{ rhythm }}</a></h1>
+</div>
+
+<div class="page-header>">
+
+	<h2>Descrição de Rítmo</h2>
+
+</div>
+<br>	
+
+
+{{ rhythm.description|linebreaks }}
+
+<div class="page-header"></div>
+
+	<h3>Passos do Rítmo - <strong>{{ rhythm }}</strong></h3><br/>
+<br>
+
+	{% for step in rhythm.dancesteps.all %}
+		<div class="row">
+			<h3><a href="#">{{ step.name }}</a></h3>
+			<hr/>	
+		</div>
+	{% empty %}
+		<div class="alert alert-info">
+			Nenhum passo para este Rítmo.
+		</div>
+	{% endfor %}
+
+	<br/>
+	<div>
+		<div class="page-header">
+		<h4>Adicionar Passo do Rítmo - <strong>{{ rhythm }}</strong></h4>
+		</div>
+		<form class="form-horizontal" method="post" action="">
+			{% include "form.html" with form=dancestep_form %}
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary">Cadastrar</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+{% endblock %}
